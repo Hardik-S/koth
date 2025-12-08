@@ -1,0 +1,121 @@
+Hi everyone,
+
+As I am sure you are aware, you all have your final reports and videos due on the 9th. In case you are working on them or looking to polish some sections up here are some considerations that might be helpful:
+0. Structure
+
+    Abstract: A brief summary of the problem addressed, the proposed approach or method, key results, and the main contributions of the paper.
+    Introduction: Introduces the research problem and its importance, outlines the research objectives and contributions, and provides a high-level overview of the paper’s structure.
+    Background: Reviews relevant prior work, theories, and technical concepts needed to understand the study, and positions the paper within existing research.
+    Methods: Describes the algorithms, models, datasets, experimental setup, and implementation details used to conduct the study, enabling reproducibility.
+    Results: Presents the experimental or empirical findings, including quantitative evaluations, comparisons, and observed performance without interpretation beyond what is directly supported by the data.
+    Conclusion: Summarizes the main contributions and findings, discusses their implications, acknowledges limitations, and suggests directions for future work.
+
+1. Problem Definition and Context
+
+    Is the problem clearly stated?
+
+    Is it clear why this problem is interesting or important?
+
+    Does the report explain:
+
+        The goal of the analysis
+
+        What a successful solution would look like
+
+        Who might benefit from the results
+
+2. Dataset Description
+
+    Is the dataset described clearly and in sufficient detail?
+
+    Does the report explain:
+
+        Where the data came from
+
+        What the key features are
+
+        Any limitations or potential biases in the data
+
+    Is it clear how the target variable is defined?
+
+3. Data Cleaning and Preprocessing
+
+    Were data‐quality issues discussed (missing values, outliers, formatting)?
+
+    Were appropriate steps taken to clean the dataset?
+
+    Is feature engineering explained and justified?
+
+4. Exploratory Data Analysis (EDA)
+
+    Did the report include meaningful:
+
+        Descriptive statistics
+
+        Visualizations
+
+        Interpretation of trends or relationships
+
+    Is EDA used to motivate modeling decisions?
+
+5. Modeling Approach
+
+    Are the chosen classification models clearly identified?
+
+    Does the report explain:
+
+        Why those models were selected
+
+        How hyperparameters were tuned (if applicable)
+
+        The train/test or cross-validation strategy
+
+    Is the modeling process reproducible and transparent?
+
+6. Evaluation and Metrics
+
+    Are appropriate evaluation metrics used (accuracy, F1, precision/recall, ROC-AUC, etc.)?
+
+    Are the results interpreted correctly—beyond just listing numbers?
+
+    If comparing multiple models:
+
+        Is the comparison fair and well explained?
+
+        Is the best model chosen with justification?
+
+7. Interpretation and Insights
+
+    Does the report explain what the model results mean in context?
+
+    Are there meaningful conclusions, such as:
+
+        Which factors drive predictions
+
+        What stakeholders should take away
+
+    Are limitations acknowledged?
+
+8. Communication and Structure
+
+    Is the report:
+
+        Well organized
+
+        Logically structured
+
+        Clearly written
+
+    Are figures and tables readable and properly labeled?
+
+    Can someone not involved in the project understand your approach?
+
+9. Technical Correctness
+
+    Do the methods make sense statistically and computationally?
+
+    Are arguments logically supported by evidence?
+
+    Are any claims overstated or unjustified?
+
+Hope this helps, and good luck!

@@ -1,0 +1,87 @@
+Lecture 1 – Intro to Machine Learning and Simple Linear Regression
+
+Positions ML inside AI: AI automates intellectual tasks, ML is the data-driven subfield that learns patterns for prediction or decision making, and Deep Learning is a subset using layered representations.
+
+Distinguishes supervised learning (classification and regression), unsupervised learning (clustering, dimensionality reduction), and reinforcement learning (agent-environment interaction with rewards).
+
+Outlines the ML workflow: decide if ML is appropriate, gather and clean data, split into train/validation/test, choose a model, train via iterative optimization, tune hyperparameters on validation data, and evaluate once on a held-out test set.
+
+Introduces simple linear regression, cost functions (RSS/SSE), and gradient descent as a generic optimization procedure to find parameters that minimize error. 
+
+Lecture 3 – Probability and Maximum Likelihood
+
+Motivates probability as the language for dealing with uncertainty and “surprise” in ML, where good models are those that are least surprised by observed data.
+
+Reviews random variables, distributions, PMF/PDF, and CDF as the basic tools for reasoning about uncertainty. 
+
+Connects optimization in ML to maximum likelihood: choosing parameters that maximize the probability of the observed data, which is equivalent to minimizing a suitable loss.
+
+Shows that with a Gaussian noise assumption on regression outputs, minimizing least-squares error corresponds to maximizing the log-likelihood. 
+
+Lecture 4 – Quantifying Uncertainty
+
+Emphasizes why we care about uncertainty in predictions, especially in high-stakes domains such as healthcare or finance. 
+
+Distinguishes parameters (population quantities) from statistics (sample-based estimates) and introduces sampling distributions. 
+
+Uses the Central Limit Theorem to justify approximate normality of sample means for large samples, which underlies standard confidence interval formulas. 
+
+Presents two main strategies for confidence intervals: analytic intervals assuming known or approximately normal distributions, and bootstrap intervals that estimate uncertainty by resampling from the observed data. 
+
+Lecture 5 – Model Selection and Regularization
+
+Frames generalization as the central goal and decomposes expected test error into bias, variance, and irreducible noise. 
+
+Explains the bias–variance tradeoff: simple models underfit (high bias), overly flexible models overfit (high variance), so the aim is to find an optimal complexity level. 
+
+Describes model selection strategies such as train/validation/test splits and k-fold cross-validation for robust estimates of out-of-sample performance. 
+
+Introduces feature construction and feature selection as levers for model performance and simplicity, including basis functions, stepwise selection, and dimensionality reduction.
+
+Covers regularization methods (Ridge, Lasso, Elastic Net), their penalties, and the need to standardize features and tune regularization strength via cross-validation.
+
+Lecture 6 – Classification and Decision Trees
+
+Defines classification as supervised learning with qualitative labels and contrasts it with regression.
+
+Surveys logistic regression, SVMs, and k-NN, emphasizing the role of decision boundaries, kernels, and distance-based voting, and the importance of feature scaling for SVM and k-NN.
+
+Reviews evaluation metrics: accuracy, precision, recall, specificity, and ROC-AUC, and notes that accuracy can be misleading under class imbalance.
+
+Introduces decision trees for classification and regression, impurity measures (Gini, entropy), and greedy, top-down recursive splitting.
+
+Motivates ensembles (bagging, random forests, boosting) to reduce variance or bias and discusses feature importance as a way to interpret complex tree ensembles.
+
+Lecture 7 – Deep Learning and Neural Networks
+
+Explains why traditional models may struggle on tasks like image or speech recognition and motivates neural networks as flexible function approximators.
+
+Describes neural network architecture: layers of neurons with weights and biases, activation functions, and different output choices for regression or classification.
+
+Outlines training via forward pass, loss computation, backpropagation, and (mini-batch) gradient descent.
+
+Discusses regularization in NNs (L1/L2, early stopping, dropout) and common training pathologies like vanishing or exploding gradients and dead ReLUs.
+
+Lecture 8 – Computer Vision, Sequential Models, and Bias in ML
+
+Introduces computer vision tasks and shows why fully connected NNs are poorly suited to raw images, motivating CNNs as locally connected architectures that exploit spatial structure.
+
+Describes CNN building blocks: convolutional, pooling, and fully connected layers, along with padding and data augmentation to improve generalization.
+
+Covers sequential models for text, audio, and time series: RNNs, LSTMs with gating and memory, and transformers using attention and parallel sequence processing. 
+
+Discusses bias and fairness in ML, highlighting how unrepresentative datasets and historical patterns can lead to systematic performance gaps, and outlines mitigation strategies such as better data, subgroup evaluation, and adjustments during or after training. 
+
+Lecture 9 – Unsupervised Learning, Clustering, and Dimensionality Reduction
+
+Defines unsupervised learning as finding patterns in unlabeled data and distinguishes clustering, association rules, and dimensionality reduction as key task types. 
+
+Introduces clustering concepts (exclusive, overlapping, hierarchical, probabilistic, density-based) and practical applications such as market segmentation, anomaly detection, and image segmentation.
+
+Presents major clustering algorithms (k-means, Gaussian mixture models with EM, agglomerative clustering, DBSCAN, HDBSCAN) and notes that many have at least quadratic time complexity in the number of examples.
+
+Discusses internal cluster quality metrics like Calinski–Harabasz and Davies–Bouldin indexes to evaluate separation and compactness without labels. 
+
+Explains dimensionality reduction as representing data with fewer features while keeping its structure, motivated by computation, overfitting risk, interpretability, and the curse of dimensionality.
+
+Details PCA as a linear dimensionality reduction technique (principal components, explained variance, importance of scaling) and briefly introduces nonlinear methods like t-SNE and UMAP, as well as autoencoders as neural-network-based feature learners.

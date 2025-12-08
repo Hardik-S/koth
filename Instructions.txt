@@ -1,0 +1,53 @@
+Group Project Phase II
+Instructions
+	
+
+Submit a 1-2 page draft of your report as PDF. Like the previous phase only 1 group member needs to submit. Below is an outline of the sections that should be included in your draft, the length of each section will depend on how far your group is.
+
+I suggest using LaTeX, and an IEEE template. At this point, your paper should include:
+Abstract
+
+    ~150–250 word summary of the entire paper.
+
+    Briefly covers:
+
+        Problem statement
+
+        Methodology
+
+        Summary of results (in the final paper)
+
+        Conclusion/implications (in the final paper)
+
+Introduction
+
+    Presents the problem background and motivation.
+
+    Briefly summarizes your contributions.
+
+    End with a summary of the paper structure.
+
+Related Work (or Literature Review)
+
+    Summarizes and compares existing approaches.
+
+    Highlights limitations or gaps that your work addresses.
+
+    Critical analysis, not just a list of papers.
+
+Methodology / Proposed Method
+
+    Describes your proposed model(s)  in detail.
+
+    Must be replicable by others. This includes all hyper parameters you used to train your model.
+
+    Subsections might include:
+
+        System architecture
+
+        Data preprocessing
+
+        Algorithm design
+
+        Model training
+

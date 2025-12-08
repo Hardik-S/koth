@@ -1,0 +1,143 @@
+This is a summary of the key points from the lectures provided in the source materials.
+
+***
+
+### **Lecture 1: Intro to Machine Learning & Simple Linear Regression**
+
+This lecture introduced the fundamentals of Machine Learning (ML) and Linear Regression.
+
+*   **Machine Learning Landscape:** Artificial Intelligence (AI) automates intellectual tasks, and ML is its successful subfield, utilizing mathematics and statistics to automatically detect patterns in data for predictions or decisions. Deep Learning (DL) is a subfield of ML focused on learning meaningful representations through successive layers ("layered representations learning").
+*   **Types of ML:**
+    *   **Supervised learning:** Learning from labeled input-output pairs to create a mapping. Categories include **Classification** (predicting a discrete label, e.g., spam/not-spam) and **Regression** (predicting a continuous value, e.g., house price).
+    *   **Unsupervised learning:** Dealing with unlabeled data to find interesting patterns or for knowledge discovery. Examples include clustering and dimensionality reduction.
+    *   **Reinforcement learning:** An agent learns a strategy (policy) by observing an environment, performing actions, and maximizing positive reward signals.
+*   **ML Workflow:** The typical process includes gathering/organizing data, splitting the data into training, validation, and test sets, choosing a model, iteratively optimizing the model (training), tuning hyperparameters (using the validation set), and finally evaluating the trained model once on the test set to report an unbiased estimate of generalization performance.
+*   **Simple Linear Regression:** This model represents the expected relationship between features ($x$) and a continuous response variable ($y$). Regression often involves fitting a straight line or another curve (quadratic, exponential) to the data.
+*   **Optimization:** The goal is to find the parameters ($\hat{\theta}$) that produce the "best" line by defining and minimizing a cost function. The cost is typically measured by the **Residual Sum of Squares (RSS)** (also known as Sum of Squared Errors/SSE). Optimization is performed iteratively, using gradient descent, where the learning rate ($\alpha$) controls the step size taken towards the minimum of the cost function.
+
+***
+
+### **Lecture 3: Probability & Maximum Likelihood**
+
+This lecture focused on introducing the language of probability to understand the foundation of model optimization and loss functions.
+
+*   **Role of Probability in ML:** Probability theory addresses problems involving uncertainty in ML, such as choosing the best prediction or the best model. Machine learning is essentially programming by optimization. The best model is the one least "surprised" by the outcome.
+*   **Optimization as Maximizing Probability:** When adjusting parameters using gradient descent, the goal is to **maximize the likelihood (probability) of the observed data**, which is mathematically equivalent to minimizing the total surprise or the loss function.
+*   **Random Variables and Distributions:** A Random Variable is a quantity produced by a random process, and a realization is a specific observed value of that variable. A **Distribution** is a function showing possible values for a variable and how often they occur.
+*   **Discrete vs. Continuous Variables:**
+    *   Discrete random variables use a **Probability Mass Function (PMF)**, $p_X(x)$, which gives the probability $P(X=x)$.
+    *   Continuous random variables use a **Probability Density Function (PDF)**, $f_X(x)$, because the probability of $P(X=x)$ is zero.
+*   **Cumulative Distribution Function (CDF):** The CDF accumulates probabilities, giving $P(X \leq x)$.
+*   **Maximum Likelihood Estimation (MLE):** MLE is an estimation method that finds the set of parameters ($\theta$) that maximize the likelihood of a given data set under an assumed probability distribution.
+*   **MLE and Linear Regression:** Assuming the target variable ($y$) is normally distributed (with the mean predicted by the linear model), maximizing the Log Likelihood is equivalent to minimizing the least-squared error. Log likelihood is typically used because it converts numerically unstable products of small probabilities into sums, which are numerically stable.
+
+***
+
+### **Lecture 4: Quantifying Uncertainty**
+
+This lecture covered the crucial topic of quantifying uncertainty in predictions.
+
+*   **Motivation:** It is essential to know how certain a model is in its predictions, especially in domains like healthcare, finance, and autonomous systems. Understanding uncertainty improves trust and decision-making.
+*   **Confidence Intervals (CIs):** CIs are commonly used to quantify uncertainty by giving a range of plausible values for an estimate. For example, a 95% CI means we are 95% confident that the true average value lies within that range.
+*   **Statistical Background:** A **Parameter** characterizes the entire population (e.g., true mean), while a **Statistic** describes a sample (e.g., sample mean) and is used to estimate the parameter. A **Sampling Distribution** is the probability distribution of a statistic obtained from repeatedly taking samples from the population.
+*   **Central Limit Theorem (CLT):** The CLT is vital for constructing CIs because it guarantees that if the sample size ($n$) is large enough, the sampling distribution of the mean is approximately normal, regardless of the original data distribution. A normal distribution is required to use the standard CI formula for the mean. While often misstated as $n>30$, there is no strict hard and fast rule for the sample size.
+*   **Methods for Constructing CIs:**
+    1.  **Using CLT/Normality:** Calculate uncertainty based on a specified confidence level when the distribution is known or can be assumed normal.
+    2.  **Bootstrapping:** Used when the sample size is small, the population distribution is highly skewed/unknown, or the statistic of interest is not the mean. This method estimates the distribution of an estimator by resampling. The procedure involves repeatedly resampling data points *with replacement* (often $k > 1000$ times), computing the statistic for each resample, and constructing the CI by taking the lower and upper percentiles for the confidence level (e.g., 2.5th and 97.5th percentiles for 95% CI).
+
+***
+
+### **Lecture 5: Model Selection & Regularization**
+
+This lecture focused on how to assess model performance, the tradeoff between complexity and generalization, and methods to manage this tradeoff.
+
+*   **Generalization and Test Error:** Generalization is the ability of a trained model to make accurate predictions on new, unseen data. The expected test error can be broken down into three components: **Bias**, **Variance**, and Irreducible Error.
+*   **Bias-Variance Tradeoff:**
+    *   **Bias** is the systematic error that occurs when the true model and the fitted model are not of the same class (difference between average prediction and true value). High bias results in **underfitting**. Reducing bias requires a more complex model.
+    *   **Variance** measures how much a model’s performance changes when trained on different subsets of training data. High variance models pay too much attention to training data (noise), leading to **overfitting**.
+    *   Bias and variance are conflicting goals: generally, as bias decreases, variance increases, and vice versa. The aim is to find the optimal balance that minimizes total error.
+*   **Model Selection Techniques:**
+    *   **Train-Test Split:** Splitting data to test generalization, where the test set should be held out until the very end. To prevent overfitting to the test set, a **Validation Set** is often added to tune hyperparameters or select between models during training.
+    *   **Cross-Validation (CV):** A safer technique than a single train-test split for checking performance on unseen data and preventing overfitting. **K-Fold Cross-Validation** divides the data into $K$ parts, trains on $K-1$ parts, validates on the remaining part, and averages the errors. The typical strategy is to choose the model with the lowest validation error.
+*   **Regularization (Shrinkage):** A method used to manage the bias-variance tradeoff by keeping all features but constraining (shrinking) the size of the coefficient estimates to reduce variance and complexity.
+    *   **Ridge Regression (L₂ Regularization):** Penalizes large coefficients using the L₂-norm; coefficients are pulled toward zero but never exactly zero.
+    *   **Lasso Regression (L₁ Regularization):** Uses the L₁ norm; it can shrink coefficients completely to zero, thus performing feature selection.
+    *   **ElasticNet (Hybrid):** Combines both L₁ and L₂ penalties.
+*   **Standardization:** Since regularization depends directly on the magnitude of the coefficients, it is crucial to standardize the data before applying regularization to ensure all features have equal influence (mean 0, variance 1). Cross-validation is typically used to select the optimal regularization strength ($\lambda$).
+
+***
+
+### **Lecture 6: Classification & Decision Trees**
+
+This lecture introduced Classification, various classification algorithms, evaluation metrics, and decision trees, including ensemble methods.
+
+*   **Classification:** A supervised ML method where the model predicts a qualitative output (labels or categories), unlike regression which predicts continuous numeric values.
+*   **Classification Algorithms:**
+    *   **Logistic Regression:** Predicts the probability of an outcome (0 to 1). It uses the sigmoid function for binary classification or the softmax function for multi-class classification.
+    *   **Support Vector Machine (SVM):** Finds the best hyperplane (decision boundary) that separates different classes, often requiring kernel functions for non-linearly separable data. Scaling data is very important for SVMs.
+    *   **K-Nearest Neighbors (KNN):** Classifies a new data point based on the majority vote of its $K$ nearest neighbors (usually determined by distance). Scaling is required.
+*   **Evaluation Metrics:** Key metrics include **Accuracy** (overall correct predictions), **Precision** (predicted positives that are truly positive), **Recall/Sensitivity** (proportion of positives correctly labeled), and **Specificity** (proportion of negatives correctly labeled).
+    *   **Accuracy Warning:** Accuracy can be misleading if classes are imbalanced; in such cases, one might use balanced accuracy or maximize another metric.
+    *   **ROC-AUC:** The ROC curve plots the True Positive Rate (TPR) against the False Positive Rate (FPR) for different thresholds. AUC (Area Under the ROC Curve) is a metric used to compare models; a larger AUC indicates a better classifier.
+*   **Decision Trees (DTs):** Models that produce an outcome by traversing a series of sequential decisions (if-then rules) based on features. They can be used for both regression and classification.
+    *   **Construction:** DTs are constructed using **recursive binary splitting**, a top-down, greedy approach.
+    *   **Regression Trees:** Splits are chosen to minimize prediction error, typically **SSE** (Sum of Squared Errors).
+    *   **Classification Trees:** Splits are chosen to minimize **Impurity** (how mixed the classes are within a node). Impurity can be measured using **Gini Impurity** or **Entropy**. The split with the largest reduction in impurity (or highest Information Gain) is chosen.
+*   **DT Limitations and Ensemble Methods:** DTs are prone to overfitting (overly complex trees) and suffer from **high variance**. This is mitigated by **Ensemble Learning**, which aggregates multiple models to improve predictions.
+    *   **Bagging (Bootstrap Aggregating):** Reduces variance by training multiple independent models on different bootstrapped (resampled with replacement) subsets of the data and combining their predictions (majority vote or average).
+    *   **Random Forest (RF):** A specific implementation of bagging that introduces more randomness by considering only a random subset of features at each split, reducing correlation between trees and lowering variance.
+    *   **Boosting:** Trains models sequentially, where each new model focuses on correcting the errors (residuals) of the previous one, aiming to reduce bias. Examples include AdaBoost, Gradient Boosting, and XGBoost (eXtreme Gradient Boosting), which uses regularization to prevent overfitting.
+*   **Feature Importance:** Used to interpret complex ensemble models by quantifying how much each feature contributed to reducing impurity across all splits.
+
+***
+
+### **Lecture 7: Deep Learning & Neural Networks**
+
+This lecture introduced Deep Learning, the structure of Neural Networks (NNs), how they are trained, and associated challenges.
+
+*   **Motivation for NNs:** Traditional models are often not complex enough to handle difficult tasks like image or speech recognition. NNs are brain-inspired models designed to achieve better performance on these problems.
+*   **NN Structure:** An NN consists of nodes (neurons) connected by edges (synapses/weights). Neurons are organized into layers: an **Input layer** (takes features), **Hidden layers** (transform data), and an **Output layer** (produces the final prediction).
+    *   Each neuron performs a mathematical operation: calculating the weighted sum of inputs plus a **bias term**, and passing the result through an activation function.
+*   **Activation Functions:** These functions introduce essential **non-linearity** into the network.
+    *   Common choices for hidden layers include **ReLU** (Rectified Linear Unit), which is simple and popular, and **Leaky ReLU**, which prevents "dying neurons" by maintaining a small gradient for negative inputs.
+    *   Output layer choices depend on the task: **Linear** (regression), **Sigmoid** (binary classification), or **Softmax** (multi-class classification). Sigmoid and Tanh should generally be avoided in hidden layers because they are susceptible to the vanishing gradient problem.
+*   **Perceptrons and MLPs:** A Perceptron is the simplest NN architecture (a single neuron). Multi-Layer Perceptrons (MLPs) consist of multiple fully connected layers. NNs with many hidden layers are considered **deep**.
+*   **NN Training:** Training involves finding the optimal weights and biases that minimize a chosen **Cost Function** (a measure of error, e.g., MSE for regression, Cross-Entropy for classification).
+*   **Training Process and Optimization:**
+    *   The process involves a **Forward Pass** (prediction), computing the loss, a **Backward Pass (Backpropagation)** (computing the gradient of the cost function with respect to every weight/bias), and **Optimization** (updating weights).
+    *   **Gradient Descent (GD)** iteratively adjusts weights in the opposite direction of the gradient to minimize loss. **Mini-Batch Gradient Descent** is commonly used, calculating the gradient using small subsets of data for fast, approximate updates.
+*   **Regularization:** NNs can quickly become overly complex due to a high number of parameters, necessitating regularization to avoid overfitting. Techniques include L1/L2 regularization, Early Stopping, and **Dropout** (randomly ignoring neurons during training).
+*   **Challenges:** Common issues in training NNs include **Vanishing Gradients** (gradients in early layers become too small, stalling learning), **Exploding Gradients** (gradients grow uncontrollably), and **Dead ReLU Units**.
+
+***
+
+### **Lecture 8: Computer Vision, Sequential NNs, and Biases in ML**
+
+Lecture 8 covered Computer Vision using CNNs, sequential models, and the ethical topic of bias and fairness in ML.
+
+#### **A. Computer Vision and Convolutional Neural Networks (CNNs)**
+
+*   **Computer Vision (CV):** The field of AI concerned with automating tasks performed by the human visual system, extracting information from digital images and videos.
+*   **Image Representation:** A color image is represented as a 3D array (a stack of Red, Green, and Blue grayscale images) where each pixel value is a number.
+*   **Why CNNs are used for images:** Standard feed-forward NNs treat pixels independently, ignore spatial structure, and have too many weights to scale well for images. **CNNs** (Convolutional Neural Networks) address this by being locally connected, focusing on small parts of the image, and utilizing spatial structure.
+*   **CNN Layers:** CNNs typically comprise three main layer types:
+    1.  **Convolutional Layer:** Uses **filters/kernels** that slide (convolve) over the image to find patterns or features (edges, textures). The output is a **feature map**. CNNs automatically **learn** these filters during training.
+    2.  **Pooling Layer (Downsampling):** Reduces the size and dimensionality of the feature maps by applying aggregation functions (Max pooling or Average pooling) across the input, reducing complexity and limiting overfitting risk.
+    3.  **Fully-Connected (FC) Layer:** Performs the final classification based on the features extracted by the previous layers.
+*   **Auxiliary Techniques:** **Padding** adds filler pixels around the image boundary to prevent loss of perimeter pixels. **Image Augmentation** generates new training examples through random changes (cropping, flipping, brightness adjustment) to improve model generalization.
+*   **Advanced Architectures:** AlexNet demonstrated that learned features outperform manually-designed features. ResNet introduced residual blocks to improve learning in very deep networks.
+*   **Transfer Learning:** A critical technique for CNNs, involving transferring knowledge (weights) learned from a large source dataset to a new target dataset, often using **Fine-Tuning**.
+
+#### **B. Sequential Neural Networks**
+
+*   **Sequential Data:** Data where the order matters and inputs may have variable length, such as text, audio, or time series data. Sequential models must maintain order information and capture dependencies.
+*   **Recurrent Neural Networks (RNNs):** Models that process sequential data using recurrent connections. They maintain a **hidden state** that acts as a memory of previous inputs. RNNs suffer from limited memory (only capturing short-term dependencies) and exploding/vanishing gradients.
+*   **Long Short-Term Memory Networks (LSTMs):** A type of RNN that uses a **memory cell** with three gates (input, forget, output) to control information flow. LSTMs handle long-term dependencies better and are less susceptible to the vanishing gradient problem.
+*   **Transformers:** A type of NN that excels at processing sequential data primarily through its **Attention Mechanism**. Unlike RNNs/LSTMs, Transformers can process the entire sequence simultaneously (parallelization). Transformers generally outperform other sequential models.
+
+#### **C. Bias and Fairness in Machine Learning**
+
+*   **Bias (ML Definition):** Refers to systematic errors in ML introduced by the data, the model, or human decisions. This often occurs when training data is not representative (e.g., underrepresented groups) or reflects historical biases.
+*   **Consequence of Bias:** A model trained on biased data will perform poorly on underrepresented groups and fail to generalize well in the real world.
+*   **Fairness:** Ensuring ML models generalize equitably, preventing the model from unfairly favoring or disadvantaging certain groups, particularly when dealing with sensitive data (e.g., loan approvals, admissions).
+*   **Mitigation:** To improve fairness, one should strive to use representative training data, evaluate model performance across subgroups, adjust the training process (e.g., reweighting or regularization), and/or apply post-processing to adjust decision thresholds.b 
