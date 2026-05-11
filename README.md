@@ -30,6 +30,9 @@ This repository supports a solo research project examining evaluation strategies
 - Qualitatively review flagged positions, emphasizing central king routes, piece coordination, and tactical motifs unique to KotH.
 - Document insights and recommendations in follow-up reports (e.g., Phase deliverables).
 
+## Validation
+- Run `python scripts/verify_black_material_features.py` after editing notebook feature extraction code. The guard checks that black piece-count and material-total features read from the lowercase `black_material` keys used by the extractor rather than silently zeroing those features with uppercase lookups.
+
 ## Repository Expectations
 - Source code for data processing, evaluator implementations, and batch evaluation scripts.
 - Configuration files or notebooks that reproduce extraction, evaluation, and analysis steps.

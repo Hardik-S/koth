@@ -66,7 +66,7 @@ def extract_features_from_fen(fen: str, result: str, side_to_move: str) -> Tuple
     
     # Material counts by piece type
     features.extend([white_material.get(p, 0) for p in 'PNBRQ'])
-    features.extend([black_material.get(p.upper(), 0) for p in 'pnbrq'])
+    features.extend([black_material.get(p, 0) for p in 'pnbrq'])
     
     # Material imbalance
     features.extend([
@@ -76,7 +76,7 @@ def extract_features_from_fen(fen: str, result: str, side_to_move: str) -> Tuple
     
     # Total material value
     white_total = sum(white_material.get(p, 0) * piece_values.get(p, 0) for p in 'PNBRQ')
-    black_total = sum(black_material.get(p.upper(), 0) * piece_values.get(p.upper(), 0) for p in 'pnbrq')
+    black_total = sum(black_material.get(p, 0) * piece_values.get(p.upper(), 0) for p in 'pnbrq')
     features.extend([white_total, black_total, white_total - black_total])
     
     # --- King Centralization ---
